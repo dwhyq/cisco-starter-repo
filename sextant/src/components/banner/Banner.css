@@ -1,0 +1,12 @@
+.banner {
+    padding: 16px;
+    border: 1px solid skyblue;
+    background-color: skyblue;
+    width: 100%;
+    overflow: hidden;
+}
+.banner-title {
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+}
