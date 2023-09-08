@@ -10,3 +10,6 @@
     font-size: 13px;
     cursor: pointer;
 }
+h2, .user-ip p {
+    margin-bottom: 14px;
+}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import SideBar from "../components/sidebar/SideBar";
 import "./Dashboard.css";
 import Banner from "../components/banner/Banner";
-import UserIp from "../userIP/UserIp";
-import Latency from ".././latency/Latency";
+import UserIp from "../components/userIP/UserIp";
+import Latency from "../components/latency/Latency";
 
 const Dashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -18,7 +18,6 @@ const Dashboard = () => {
       <div className="content">
           <SideBar onComponentClick={handleComponentClick}/>
         <div className="main-content">
-          {selectedComponent === 'home' ? "This is home" : ""}
           {selectedComponent === 'userIP' ? <UserIp/> : ""}
           {selectedComponent === 'latency' ? <Latency/> : ""}
         </div>
