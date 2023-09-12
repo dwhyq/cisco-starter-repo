@@ -1,33 +1,29 @@
-import React, { Component } from 'react';
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+// Latency.jsx
+import React, { useState, useEffect } from 'react';
+import { w3cwebsocket as W3CWebSocket } from 'websocket';
+
 const client = new W3CWebSocket('ws://localhost:55455');
 
-class Latency extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            latency: null
-        };
-    }
+const Latency = () => {
+  const [latency, setLatency] = useState(null);
 
-    componentDidMount() {
-        client.onmessage = (message) => {
-            this.setState({
-                latency: new Date().getTime() - message.data
-            })
-        };
-    }
+  useEffect(() => {
+    client.onmessage = (message) => {
+      setLatency(new Date().getTime() - parseInt(message.data));
+    };
 
-    render() {
-        return (
-          <div>
-            <h2>Latency</h2>
-            <span className="PylonConnector">
-                {this.state.latency}
-            </span>
-          </div>
-        );
-    }
-}
+    return () => {
+      // Clean up WebSocket when the component unmounts
+      client.close();
+    };
+  }, []);
+
+  return (
+    <div>
+      <h2>Latency</h2>
+      {latency !== null && <p>Packet Latency: {latency} ms</p>}
+    </div>
+  );
+};
 
 export default Latency;
